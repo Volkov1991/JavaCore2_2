@@ -26,19 +26,29 @@ public class Main {
                 .map(Person::getFamily)
                 .collect(Collectors.toList());
 
-        List<Person> workingMan = persons.stream()
+//        List<Person> workingMan = persons.stream()
+//                .filter(person -> person.getEducation() == Education.HIGHER)
+//                .filter(person -> person.getSex() == Sex.MAN)
+//                .filter(person -> person.getAge() > 16 && person.getAge() < 65)
+//                .sorted(Comparator.comparing(Person::getFamily))
+//                .collect(Collectors.toList());
+//
+//        List<Person> workingWoman = persons.stream()
+//                .filter(person -> person.getEducation() == Education.HIGHER)
+//                .filter(person -> person.getSex() == Sex.WOMAN)
+//                .filter(person -> person.getAge() > 16 && person.getAge() <60)
+//                .sorted(Comparator.comparing(Person::getFamily))
+//                .collect(Collectors.toList());
+
+        List<Person> workingAll = persons.stream()
                 .filter(person -> person.getEducation() == Education.HIGHER)
-                .filter(person -> person.getSex() == Sex.MAN)
-                .filter(person -> person.getAge() > 16 && person.getAge() < 65)
+                .filter(person -> (person.getSex() == Sex.MAN && person.getAge() > 16 && person.getAge() < 65) ||
+                        (person.getSex() == Sex.WOMAN && person.getAge() > 16 && person.getAge() <60))
                 .sorted(Comparator.comparing(Person::getFamily))
                 .collect(Collectors.toList());
 
-        List<Person> workingWoman = persons.stream()
-                .filter(person -> person.getEducation() == Education.HIGHER)
-                .filter(person -> person.getSex() == Sex.WOMAN)
-                .filter(person -> person.getAge() > 16 && person.getAge() <60)
-                .sorted(Comparator.comparing(Person::getFamily))
-                .collect(Collectors.toList());
+        System.out.println(workingAll);
+
 
 
 
